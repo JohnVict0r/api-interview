@@ -1,19 +1,19 @@
-import { IsString, Length } from 'class-validator';
+import { IsOptional, IsString, Length } from 'class-validator';
 
 export class PostDTO {
   @IsString()
-  @Length(120)
+  @Length(5)
   title: string;
 
   @IsString()
-  @Length(255)
+  @Length(2)
   description: string;
 
   @IsString()
-  @Length(120)
+  @Length(2)
   author: string;
 
+  @IsOptional()
   @IsString()
-  @Length(255)
   categories?: string;
 }

@@ -20,6 +20,7 @@ export class Post {
     this.author = author;
     this.categories = categories
       ?.split(',')
+      .filter(Boolean)
       .map((category) => (category));
   }
 }
