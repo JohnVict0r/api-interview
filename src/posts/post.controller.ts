@@ -1,10 +1,15 @@
 import {
+  Controller, 
+  Param, 
   Body,
   Get,
+  Post as PostHttp,
+  Put, 
+  Delete,
   NotFoundException,
   ParseIntPipe,
 } from '@nestjs/common';
-import { Controller, Param, Put, Post as PostHttp } from '@nestjs/common';
+import { DeleteResult } from 'typeorm';
 import { Post } from './post';
 import { PostDTO } from './post.dto';
 import { PostService } from './post.service';
@@ -50,5 +55,18 @@ export class PostController {
     }
 
     return this.service.update(new Post({ id: postId, ...body }));
+  }
+
+  @Delete('/:postId')
+  public async delete(
+    @Param('postId', ParseIntPipe) postId: number,
+  ): Promise<DeleteResult> {
+    const post = await this.service.findOneById(postId);
+
+    if (!post) {
+      throw new NotFoundException(null, `Post with id ${postId} not exists`);
+    }
+
+    return this.service.remove(postId);
   }
 }

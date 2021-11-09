@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository } from 'typeorm';
 import { Post } from './post';
 import { PostEntity } from './post.entity';
 
@@ -45,5 +45,9 @@ export class PostService {
           : '',
       }),
     );
+  }
+
+  public async remove(postId: number): Promise<DeleteResult> {
+    return this.repository.delete(postId)
   }
 }
