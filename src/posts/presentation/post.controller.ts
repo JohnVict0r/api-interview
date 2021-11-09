@@ -10,9 +10,9 @@ import {
   ParseIntPipe,
 } from '@nestjs/common';
 import { DeleteResult } from 'typeorm';
-import { Post } from './post';
-import { PostDTO } from './post.dto';
-import { PostService } from './post.service';
+import { Post } from '../domain/post';
+import { PostDTO } from '../application/post.dto';
+import { PostService } from '../application/post.service';
 
 @Controller('posts')
 export class PostController {

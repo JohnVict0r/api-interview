@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeleteResult, Repository } from 'typeorm';
-import { Post } from './post';
-import { PostEntity } from './post.entity';
+import { Post } from '../domain/post';
+import { PostEntity } from '../infrastructure/post.entity';
 
 @Injectable()
 export class PostService {
