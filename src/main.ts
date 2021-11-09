@@ -1,8 +1,26 @@
 import { NestFactory } from '@nestjs/core';
+import { ValidationPipe } from '@nestjs/common';
 import { AppModule } from './app.module';
+import { TransformResponse } from './transform-response.interceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  await app.listen(3000);
+
+  app.enableCors({
+    allowedHeaders: [
+      'Accept',
+      'Authorization',
+      'Content-Type',
+      'Origin',
+      'X-Requested-With',
+    ],
+    credentials: true,
+    origin: ['http://localhost:3000'],
+  });
+  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalInterceptors(new TransformResponse());
+  app.setGlobalPrefix('api/v1');
+
+  await app.listen(3333);
 }
 bootstrap();
