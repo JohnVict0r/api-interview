@@ -10,10 +10,17 @@ import {
   ParseIntPipe,
 } from '@nestjs/common';
 import { DeleteResult } from 'typeorm';
+import {
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { Post } from '../domain/post';
 import { PostDTO } from '../application/post.dto';
 import { PostService } from '../application/post.service';
+import { PostEntity } from '../infrastructure/post.entity';
 
+@ApiTags('posts')
 @Controller('posts')
 export class PostController {
   constructor(
@@ -21,16 +28,31 @@ export class PostController {
   ) {}
 
   @Get('/')
+  @ApiOperation({ summary: 'Get all posts' })
+  @ApiResponse({ 
+    status: 200,
+    description: 'The found record',
+    type: [PostEntity],
+  })
   public async listAll(): Promise<Post[]> {
     return await this.service.findAll();
   }
 
   @PostHttp('/')
+  @ApiOperation({ summary: 'Create post' })
+  @ApiResponse({ status: 403, description: 'Forbidden.' })
   public create(@Body() body: PostDTO): Promise<Post> {
     return this.service.create(new Post(body));
   }
 
   @Get('/:postId')
+  @ApiOperation({ summary: 'Show post with :postId' })
+  @ApiResponse({ status: 404, description: 'Post with id :postId not exists.' })
+  @ApiResponse({ 
+    status: 200,
+    description: 'The found record',
+    type: PostEntity,
+  })
   public async show(
     @Param('postId', ParseIntPipe) postId: number,
   ): Promise<Post> {
@@ -44,6 +66,13 @@ export class PostController {
   }
 
   @Put('/:postId')
+  @ApiOperation({ summary: 'Update post' })
+  @ApiResponse({ status: 404, description: 'Post with id :postId not exists.' })
+  @ApiResponse({ 
+    status: 200,
+    description: 'The update record',
+    type: [PostEntity],
+  })
   public async update(
     @Param('postId', ParseIntPipe) postId: number,
     @Body() body: PostDTO,
@@ -58,6 +87,8 @@ export class PostController {
   }
 
   @Delete('/:postId')
+  @ApiOperation({ summary: 'Delete post' })
+  @ApiResponse({ status: 404, description: 'Post with id :postId not exists.' })
   public async delete(
     @Param('postId', ParseIntPipe) postId: number,
   ): Promise<DeleteResult> {
