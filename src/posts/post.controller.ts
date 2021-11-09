@@ -4,7 +4,7 @@ import {
   NotFoundException,
   ParseIntPipe,
 } from '@nestjs/common';
-import { Controller, Param, Post as PostHttp } from '@nestjs/common';
+import { Controller, Param, Put, Post as PostHttp } from '@nestjs/common';
 import { Post } from './post';
 import { PostDTO } from './post.dto';
 import { PostService } from './post.service';
@@ -36,5 +36,19 @@ export class PostController {
     }
 
     return post
+  }
+
+  @Put('/:postId')
+  public async update(
+    @Param('postId', ParseIntPipe) postId: number,
+    @Body() body: PostDTO,
+  ): Promise<Post> {
+    const post = await this.service.findOneById(postId);
+
+    if (!post) {
+      throw new NotFoundException(null, `Post with id ${postId} not exists`);
+    }
+
+    return this.service.update(new Post({ id: postId, ...body }));
   }
 }
