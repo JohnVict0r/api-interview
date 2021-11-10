@@ -41,7 +41,7 @@ export class PostController {
   @PostHttp('/')
   @ApiOperation({ summary: 'Create post' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  public create(@Body() body: PostDTO): Promise<Post> {
+  public async create(@Body() body: PostDTO): Promise<Post> {
     return this.service.create(new Post(body));
   }
 
