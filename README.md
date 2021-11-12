@@ -13,6 +13,11 @@ Uma API simples para um blog, desenvolvido com a finalidade de entrevista para d
 
 Todas as requisições serão prefixadas com o seguinte endereço: `http://localhost:3333/api/`.
 
+### Deploy da API
+
+Foi realizado o deploy da api no heroku com o seguinte endereço:
+`https://api-blog-interview.herokuapp.com/api/`.
+
 ### Swagger
 
 Os recursos disponiveis podem ser visualizadas no seguinte endereço: `http://localhost:3333/api/swagger`.
@@ -36,6 +41,7 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias
 - [TypeScript](https://www.typescriptlang.org/)
 - [Node.js](https://nodejs.org/en/)
 - [Nest.JS](http://nestjs.com/)
+- [Heroku](https://api-blog-interview.herokuapp.com/api/swagger)
 
 ## Instalação
 
@@ -71,6 +77,7 @@ $ npm run test:cov
 
 ## Funcionalidades futuras
 
+- Configuração de um banco de dados (Postgres)
 - Autenticação para gerenciar os posts do blog.
 - Soft delete nos posts
 - Data de publicação dos posts
