@@ -21,6 +21,6 @@ export class Post {
     this.categories = categories
       ?.split(',')
       .filter(Boolean)
-      .map((category) => (category));
+      .map((category) => (category.trim()));
   }
 }
