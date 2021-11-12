@@ -18,16 +18,16 @@ async function bootstrap() {
     origin: ['http://localhost:3000'],
   });
   app.useGlobalPipes(new ValidationPipe());
-  app.setGlobalPrefix('api/v1');
+  app.setGlobalPrefix('api');
 
   const config = new DocumentBuilder()
   .setTitle('Api Interview')
   .setDescription('The Blog API description')
   .setVersion('1.0')
-  .addTag('posts')
+  .addTag('Blog')
   .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('api/swagger', app, document);
 
   await app.listen(process.env.PORT || 3333);
 }
