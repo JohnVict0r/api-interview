@@ -24,7 +24,6 @@ async function bootstrap() {
   .setTitle('Api Interview')
   .setDescription('The Blog API description')
   .setVersion('1.0')
-  .addTag('Blog')
   .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api/swagger', app, document);
