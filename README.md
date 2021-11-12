@@ -5,47 +5,58 @@
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+# Blog API Interview
 
-## Description
+Uma API simples para um blog, desenvolvido com a finalidade de entrevista para desenvolvedor _back-end_.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Documentação da API
 
-## Installation
+Todas as requisições serão prefixadas com o seguinte endereço: `http://localhost:3333/api/`.
+
+### Swagger
+
+Os recursos disponiveis podem ser visualizadas no seguinte endereço: `http://localhost:3333/api/swagger`.
+
+### Posts
+
+Operações relacionados aos posts do blog.
+
+| Descrição             | Verbo  | Endereço          | Body                                                                         |
+| --------------------- | ------ | ----------------- | ---------------------------------------------------------------------------- |
+| Listar todos os posts | `GET`  | `/posts`          |
+| Cadastrar um post     | `POST` | `/posts`          | `{ title: String, description: String, author: String, categories: String }` |
+| Buscar um post        | `GET`  | `/posts/{postId}` |
+| Alterar um post       | `PUT`  | `/posts/{postId}` | `{ title: String, description: String, author: String, categories: String }` |
+| Deletar um post       | `PUT`  | `/posts/{postId}` |
+
+## Tecnologias Utilizadas
+
+O projeto foi desenvolvido utilizando as seguintes tecnologias
+
+- [TypeScript](https://www.typescriptlang.org/)
+- [Node.js](https://nodejs.org/en/)
+- [Nest.JS](http://nestjs.com/)
+
+## Instalação
 
 ```bash
 $ npm install
 ```
 
-## Running the app
+## Executando o projeto
 
 ```bash
-# development
+# local
 $ npm run start
 
 # watch mode
 $ npm run start:dev
 
-# production mode
+# produção
 $ npm run start:prod
 ```
 
-## Test
+## Executando os testes
 
 ```bash
 # unit tests
@@ -58,16 +69,26 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Support
+## Funcionalidades futuras
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+- Autenticação para gerenciar os posts do blog.
+- Soft delete nos posts
+- Data de publicação dos posts
+- Filtros na listagem de posts (author, title, categoria e etc.)
 
-## Stay in touch
+## Como contribuir
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- Faça um Fork desse repositório,
+- Crie uma branch com a sua feature: `git checkout -b my-feature`
+- Commit suas mudanças: `git commit -m 'feat: My new feature'`
+- Push a sua branch: `git push origin my-feature`
 
 ## License
 
-Nest is [MIT licensed](LICENSE).
+Esse projeto está sob a licença MIT. Veja o arquivo [MIT licensed](LICENSE) para mais detalhes.
+
+---
+
+<h4 align="center">
+    Feito com 💜 by <a href="https://www.linkedin.com/in/johnv-alves/" target="_blank">John Victor</a>
+</h4>
